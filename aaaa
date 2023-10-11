@@ -1,0 +1,27 @@
+let img;
+
+function setup() {
+  createCanvas(400, 400);
+  let fileInput = createFileInput(handleFile);
+  fileInput.position(20, height + 20);
+}
+
+function draw() {
+  background(220);
+  if (img) {
+    image(img, 0, 0, width, height);
+  }
+}
+
+function handleFile(file) {
+  if (file.type === 'image') {
+    // Carrega a imagem
+    img = loadImage(file.data, () => {
+      console.log('Imagem carregada com sucesso!');
+    }, () => {
+      console.log('Erro ao carregar a imagem.');
+    });
+  } else {
+    console.log('Por favor, selecione um arquivo de imagem.');
+  }
+}
